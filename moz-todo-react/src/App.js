@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
@@ -14,7 +14,6 @@ function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
   const [filter, setFilter] = useState('All');
   const FILTER_NAMES = Object.keys(FILTER_MAP);
-  
   const taskList = tasks
     .filter(task => FILTER_MAP[filter](task))
     .map(task => (
@@ -32,12 +31,23 @@ function App(props) {
     <FilterButton
       key={name}
       name={name}
-      isPressed={name === filter}
+      isPressed={name === filter}Í
       setFilter={setFilter}
     />
   ));
   const tasksNoun = taskList.length !== 1 ? 'tasks' : 'task';
   const headingText = `${taskList.length} ${tasksNoun} remaining`;
+  useEffect(() => {
+    const data = localStorage.getItem('listOfTasks');
+    if (data){
+      setTasks(JSON.parse(data));
+    }
+  },[]);
+
+  useEffect(() => {
+    localStorage.setItem('listOfTasks', JSON.stringify(tasks));
+  });
+
 
   
   function toggleTaskCompleted(id) {
@@ -74,11 +84,19 @@ function App(props) {
     const remainingTasks = tasks.filter(task => id !== task.id);
     setTasks(remainingTasks);
   }
+  function deleteAll() {
+    const remainingTasks = [];
+    setTasks(remainingTasks);
+    localStorage.clear();
+  }
   
   
   return (
     <div className="todoapp stack-large">
       <Form addTask={addTask} />
+      <button type="button" className="btn btn__danger btn__lg" onClick={deleteAll}>
+        Clear All
+      </button>
       <div className="filters btn-group stack-exception">
         {filterList}
       </div>
@@ -93,5 +111,6 @@ function App(props) {
     </div>
   );
 }
+
 
 export default App;

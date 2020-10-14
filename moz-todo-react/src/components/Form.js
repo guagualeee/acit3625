@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 
 function Form(props) {
   const [name, setName] = useState("");
@@ -12,6 +12,8 @@ function Form(props) {
     props.addTask(name);
     setName("");
   }
+
+
   return (
     <form onSubmit={handleSubmit}>
       <h2 className="label-wrapper">
@@ -31,6 +33,7 @@ function Form(props) {
       <button type="submit" className="btn btn__primary btn__lg">
         Add
       </button>
+
     </form>
   );
 }
