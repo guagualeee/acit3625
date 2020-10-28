@@ -6,6 +6,7 @@ import Home from "./components/Home"
 import About from "./components/About"
 import Navbar from "./components/Navbar"
 import Error from "./components/Error"
+import Api from "./components/Api"
 
 export const AppContext = createContext();
 function App(props) {
@@ -20,6 +21,7 @@ function App(props) {
         <Switch>
           <Route path='/' component={Home} exact />
           <Route path='/about' component={About} />
+          <Route path='/api' component={Api} />
           <Route component={Error} />
         </Switch>
       </AppContext.Provider>

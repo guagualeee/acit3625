@@ -15,6 +15,8 @@ function Navbar() {
           <NavLink to = '/'>Home</NavLink>
           <br/>
           <NavLink to = '/about'>About Us</NavLink>
+          <br/>
+          <NavLink to = '/api'>API</NavLink>
           </NavMenu>
           <NavToggle onClick={toggleTheme}>Toggle theme</NavToggle>
       </NavBar>
