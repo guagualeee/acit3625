@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch } from "react-router-dom";
 import {Link} from 'react-router-dom';
 import styled from "styled-components";
 import { AppContext } from "../App";
+import '../App.css';
 
 function Navbar() {
     const { dispatch } = useContext(AppContext);
@@ -12,11 +13,11 @@ function Navbar() {
     return (
       <NavBar>
           <NavMenu>
-          <NavLink to = '/'>Home</NavLink>
+          <Link to = '/'>Home&nbsp;&nbsp;&nbsp;&nbsp;</Link>
           <br/>
-          <NavLink to = '/about'>About Us</NavLink>
+          <Link to = '/about'>About Us&nbsp;&nbsp;&nbsp;&nbsp;</Link>
           <br/>
-          <NavLink to = '/api'>API</NavLink>
+          <Link to = '/api'>API</Link>
           </NavMenu>
           <NavToggle onClick={toggleTheme}>Toggle theme</NavToggle>
       </NavBar>
